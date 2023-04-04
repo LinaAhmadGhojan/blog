@@ -1,7 +1,7 @@
 <template>
     <div class="post-">
         <h1>{{title}}</h1>
-        <p>{{description}}</p>
+        <p>{{description}} |shorten(20)</p>
     </div>
 <br>
     <div>

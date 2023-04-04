@@ -21,20 +21,32 @@
 <script>
 import BlogPost from '../components/blog/BlogPost.vue';
 import BlogSlid from '../components/blog/BlogSlid.vue';
-import JsonPost from '../../json/post.json'
+import JsonPost from '../../json/post.json';
+import axios from 'axios'
+
+const baseUrl="http://127.0.0.1:8000/api";
 export default {
   data: function()
  { 
   return {
     pagename:"blog",
     pagedescription:"This is an blog page",
-    posts:JsonPost,
+    posts:[],
   } ;
 },
 name:"blog",
 components:{
   BlogPost,BlogSlid
-}
+},
+mounted() {
+    axios.get(baseUrl+'/blog')
+      .then(response => {
+        this.posts = response.data
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  }
     
   }
 
